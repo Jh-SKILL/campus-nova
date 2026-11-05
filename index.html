@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F5F5EE">
+  <meta name="description" content="星图校园——东莞职业技术学院校本部 2.5D 校园导览与探索地图">
+  <title>星图校园 · Campus Nova</title>
+  <script>
+    /* 在样式表加载前还原主题，避免深色模式首帧闪白 */
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem("campus-nova:v1") || "{}");
+        if (saved && saved.version === 1 && saved.theme === "dark") {
+          document.documentElement.dataset.theme = "dark";
+        }
+      } catch (error) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="map">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <aside class="side-rail" aria-label="应用导航">
+      <a class="brand" href="#map" aria-label="星图校园首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M20 3 24.3 14.2 36 15l-9.1 7.6 2.8 11.2L20 27l-9.7 6.8 2.8-11.2L4 15l11.7-.8L20 3Z" fill="currentColor"/><circle cx="20" cy="20" r="4" fill="#F5C76A"/></svg>
+        </span>
+        <span class="brand-copy"><strong>星图校园</strong><small>CAMPUS NOVA</small></span>
+      </a>
+
+      <nav class="primary-nav" aria-label="主导航">
+        <a href="#map" data-nav="map" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/></svg>
+          <span>星图</span><small>探索校园</small>
+        </a>
+        <a href="#forum" data-nav="forum">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z"/><path d="M8 9h8M8 13h5"/></svg>
+          <span>论谈</span><small>吃瓜吐槽</small>
+        </a>
+        <a href="#clubs" data-nav="clubs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>社团</span><small>找到同好</small>
+        </a>
+        <a href="#me" data-nav="me">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span>我的</span><small>探索成就</small>
+        </a>
+      </nav>
+
+      <div class="rail-bottom">
+        <div class="verified-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"/><path d="m9 12 2 2 4-4"/></svg>
+          <div><strong>校园实名认证</strong><span>纯净社区 · 无广告</span></div>
+        </div>
+        <div class="rail-user">
+          <span class="avatar avatar-small">星</span>
+          <div><strong>林小星</strong><span>2026 级 · 已认证</span></div>
+          <span class="online-dot" title="在线"></span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="topbar">
+        <a class="mobile-brand" href="#map" aria-label="星图校园首页">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M20 3 24.3 14.2 36 15l-9.1 7.6 2.8 11.2L20 27l-9.7 6.8 2.8-11.2L4 15l11.7-.8L20 3Z" fill="currentColor"/><circle cx="20" cy="20" r="4" fill="#F5C76A"/></svg></span>
+          <strong>星图校园</strong>
+        </a>
+        <div class="topbar-copy">
+          <p id="page-eyebrow">NOVA EXPLORATION · 第 1 周</p>
+          <h1 id="page-title">晚上好，林小星</h1>
+          <p id="page-subtitle">今天，从一个新地点开始认识校园。</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-button" type="button" data-action="toggle-theme" aria-label="切换深色主题" title="切换主题">
+            <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+            <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+          </button>
+          <a class="avatar top-avatar" href="#me" aria-label="进入个人中心">星</a>
+        </div>
+      </header>
+
+      <div id="app-view" class="view-container" tabindex="-1">
+        <div class="initial-skeleton" aria-label="正在加载星图">
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-map"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <noscript><div class="noscript">请启用 JavaScript 以体验星图校园交互原型。</div></noscript>
+
+  <script src="js/mock.js" defer></script>
+  <script src="js/store.js" defer></script>
+  <script src="js/api.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
