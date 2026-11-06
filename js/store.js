@@ -21,6 +21,12 @@
   const defaultState = () => ({
     version: 1,
     theme: "light",
+    profile: {
+      name: window.NovaDB ? window.NovaDB.user.name : "林小星",
+      phone: "",
+      avatarType: "initial",
+      avatarValue: ""
+    },
     litPlaceIds: ["library", "cafeteria"],
     points: 180,
     checkins: [
@@ -43,6 +49,10 @@
       return {
         ...fallback,
         ...saved,
+        profile: {
+          ...fallback.profile,
+          ...(saved.profile && typeof saved.profile === "object" ? saved.profile : {})
+        },
         litPlaceIds: Array.isArray(saved.litPlaceIds) ? saved.litPlaceIds : fallback.litPlaceIds,
         checkins: Array.isArray(saved.checkins) ? saved.checkins : fallback.checkins,
         joinedGroupIds: Array.isArray(saved.joinedGroupIds) ? saved.joinedGroupIds : [],
@@ -71,6 +81,34 @@
     setTheme(theme) {
       this.state.theme = theme === "dark" ? "dark" : "light";
       this.save();
+    },
+
+    getProfile() {
+      const seed = window.NovaDB.user;
+      const profile = this.state.profile || {};
+      const name = profile.name || seed.name;
+      const uploaded = profile.avatarType === "upload" && profile.avatarValue;
+      return {
+        ...seed,
+        name,
+        phone: profile.phone || "",
+        initial: Array.from(name)[0] || seed.initial,
+        avatarType: uploaded ? "upload" : "initial",
+        avatarValue: uploaded ? profile.avatarValue : ""
+      };
+    },
+
+    updateProfile(payload = {}) {
+      if (!this.state.profile) this.state.profile = { ...defaultState().profile };
+      const profile = this.state.profile;
+      if (typeof payload.name === "string") profile.name = payload.name.trim().slice(0, 12);
+      if (typeof payload.phone === "string") profile.phone = payload.phone.trim();
+      if (payload.avatarType) {
+        profile.avatarType = payload.avatarType;
+        profile.avatarValue = payload.avatarType === "initial" ? "" : String(payload.avatarValue || "");
+      }
+      this.save();
+      return this.getProfile();
     },
 
     getPlace(placeId) {
@@ -116,12 +154,13 @@
     },
 
     createGroup(payload) {
-      const user = window.NovaDB.user;
+      const user = this.getProfile();
       const group = {
         id: `g-user-${Date.now()}`,
         placeId: payload.placeId,
         title: payload.title,
         category: payload.category,
+        hostId: user.id,
         host: user.name,
         hostMajor: `${user.major} · 大一`,
         hostInitial: user.initial,
@@ -173,18 +212,23 @@
 
     hydrateForumPost(post) {
       const createdAt = post.createdAt || Date.now() - (post.minutesAgo || 0) * 60000;
+      const profile = this.getProfile();
+      const withProfileName = item => (!item.anonymous && item.authorId === profile.id ? { ...item, author: profile.name, authorInitial: profile.initial } : item);
       const seedComments = (post.comments || []).map(comment => ({
-        ...comment,
+        ...withProfileName(comment),
         createdAt: comment.createdAt || Date.now() - (comment.minutesAgo || 0) * 60000,
         time: relativeTime(comment.createdAt || Date.now() - (comment.minutesAgo || 0) * 60000)
       }));
       const userComments = (this.state.forumComments[post.id] || []).map(comment => ({
-        ...comment,
+        ...withProfileName(comment),
         time: relativeTime(comment.createdAt)
       }));
       const liked = this.state.forumLikes.includes(post.id);
+      const isOwn = !post.anonymous && post.authorId === profile.id;
       return {
         ...post,
+        author: isOwn ? profile.name : post.author,
+        authorInitial: isOwn ? profile.initial : post.authorInitial,
         createdAt,
         time: relativeTime(createdAt),
         comments: [...seedComments, ...userComments],
@@ -207,13 +251,14 @@
 
     createForumPost(payload) {
       const anonymous = Boolean(payload.anonymous);
-      const user = window.NovaDB.user;
+      const user = this.getProfile();
       const post = {
         id: `post-user-${Date.now()}`,
         category: payload.category || "吐槽",
         title: payload.title,
         body: payload.body,
         anonymous,
+        authorId: user.id,
         author: anonymous ? `匿名 · ${pickAlias()}` : user.name,
         authorInitial: anonymous ? "匿" : user.initial,
         createdAt: Date.now(),
@@ -240,9 +285,10 @@
     addForumComment(postId, payload) {
       if (!this.getForumPost(postId)) throw new Error("这个话题不存在或已被删除");
       const anonymous = Boolean(payload.anonymous);
-      const user = window.NovaDB.user;
+      const user = this.getProfile();
       const comment = {
         id: `comment-${Date.now()}`,
+        authorId: user.id,
         author: anonymous ? `匿名 · ${pickAlias()}` : user.name,
         authorInitial: anonymous ? "匿" : user.initial,
         anonymous,
@@ -286,7 +332,8 @@
 
     reset() {
       const currentTheme = this.state.theme;
-      const fresh = { ...defaultState(), theme: currentTheme };
+      const currentProfile = { ...this.state.profile };
+      const fresh = { ...defaultState(), theme: currentTheme, profile: currentProfile };
       Object.keys(this.state).forEach(key => delete this.state[key]);
       Object.assign(this.state, fresh);
       this.save();

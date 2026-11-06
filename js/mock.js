@@ -18,95 +18,96 @@ window.NovaDB = {
     { id: "social", label: "社交活动" }
   ],
 
+  forumCategories: ["吃瓜", "吐槽", "树洞", "求助", "闲置"],
+
   zones: [
     {
       id: "academic", name: "教学科研区", en: "ACADEMIC CORE", color: "#6E93B8",
-      summary: "6A–6C、8A–8D 与教一至教四串起校园的教学主环，通识课、专业课与实训都集中在这一带。",
-      focus: { x: 520, y: 545 }, zoom: 1.35,
+      summary: "西侧教学楼群与南侧 8A–8D、教一至教四连成教学主环，通识课、专业课与实训都集中在这一带。",
+      focus: { x: 450, y: 400 }, zoom: 1.4,
       paths: [
-        "M 46 386 Q 160 362 292 364 L 374 384 Q 412 410 422 460 Q 430 502 464 526 L 474 548 L 466 606 Q 464 668 424 708 L 330 732 Q 198 752 92 744 Q 46 738 44 664 L 46 470 Z",
-        "M 430 550 Q 470 532 570 528 Q 664 524 686 554 L 694 690 Q 686 744 636 756 L 518 766 Q 456 764 446 714 Z",
-        "M 644 308 Q 760 286 882 292 Q 970 298 990 336 L 984 470 Q 970 522 918 538 L 842 554 Q 774 562 734 534 Q 666 514 644 480 Z",
-        "M 68 196 Q 110 176 200 174 Q 292 172 316 200 L 320 300 Q 314 344 248 354 L 150 358 Q 94 352 76 320 Z"
+        "M 54 338 Q 140 312 252 322 L 344 340 Q 358 372 350 412 L 318 462 Q 306 500 282 542 L 250 584 Q 214 622 156 630 L 92 630 Q 50 610 46 544 L 42 430 Q 44 372 54 338 Z",
+        "M 378 470 Q 464 452 574 452 Q 686 452 728 474 L 744 552 Q 732 616 664 632 L 544 640 Q 456 636 414 610 L 384 542 Z",
+        "M 544 166 Q 600 152 630 160 L 638 250 Q 630 274 596 278 L 560 274 Q 540 258 542 210 Z"
       ],
       spots: [
-        { id: "bld-6b", name: "6B 教学楼", note: "公共基础课", x: 156, y: 423 },
-        { id: "bld-6c", name: "6C 教学楼", note: "专业课程", x: 213, y: 504 },
-        { id: "bld-6a", name: "6A 教学楼", note: "实训教室", x: 143, y: 585 },
-        { id: "bld-train", name: "培训楼", note: "职业技能培训", x: 400, y: 573 },
-        { id: "bld-8a", name: "8A 信息技术", note: "现代信息技术大楼", x: 520, y: 566 },
-        { id: "bld-8b", name: "8B 设计智造", note: "设计与智造大楼", x: 500, y: 639 },
-        { id: "bld-8c", name: "8C 现代服务", note: "现代服务大楼", x: 554, y: 704 },
-        { id: "bld-8d", name: "8D 数字化教学", note: "数字化教学大楼", x: 640, y: 624 },
-        { id: "bld-duxing", name: "笃行楼 · 教二", note: "智慧教室", x: 762, y: 327, placeId: "teaching" },
-        { id: "bld-chongde", name: "崇德楼 · 教一", note: "通识课程", x: 797, y: 397 },
-        { id: "bld-jingji", name: "精技楼 · 教四", note: "实训中心", x: 902, y: 447 },
-        { id: "bld-chuangxin", name: "创新楼 · 教三", note: "创新创业", x: 928, y: 510 },
-        { id: "bld-19", name: "19栋 人文艺术", note: "人文艺术大楼", x: 145, y: 253 }
+        { id: "bld-6b", name: "6B 教学楼", note: "公共基础课", x: 150, y: 355 },
+        { id: "bld-6c", name: "6C 教学楼", note: "专业课程", x: 205, y: 410 },
+        { id: "bld-6a", name: "6A 教学楼", note: "实训教室", x: 145, y: 468 },
+        { id: "bld-train", name: "培训楼", note: "职业技能培训", x: 258, y: 382 },
+        { id: "bld-8a", name: "8A 信息技术", note: "现代信息技术大楼", x: 493, y: 425 },
+        { id: "bld-8b", name: "8B 设计智造", note: "设计与智造大楼", x: 493, y: 492 },
+        { id: "bld-8c", name: "8C 现代服务", note: "现代服务大楼", x: 604, y: 437 },
+        { id: "bld-8d", name: "8D 数字化教学", note: "数字化教学大楼", x: 610, y: 505 },
+        { id: "bld-duxing", name: "笃行楼 · 教二", note: "智慧教室", x: 588, y: 216, placeId: "teaching" },
+        { id: "bld-chongde", name: "崇德楼 · 教一", note: "通识课程", x: 652, y: 562 },
+        { id: "bld-jingji", name: "精技楼 · 教四", note: "实训中心", x: 795, y: 520 },
+        { id: "bld-chuangxin", name: "创新楼 · 教三", note: "创新创业", x: 515, y: 580 },
+        { id: "bld-19", name: "19栋 人文艺术", note: "人文艺术大楼", x: 150, y: 548 }
       ]
     },
     {
       id: "dorm", name: "宿舍生活区", en: "RESIDENTIAL QUARTER", color: "#CE8B6B",
-      summary: "东北宿舍群与教工公寓组成的生活区，菜鸟驿站、洗衣房和便利店都在步行三分钟内。",
-      focus: { x: 800, y: 200 }, zoom: 1.75,
+      summary: "东北宿舍群与西北教工公寓组成的生活区，菜鸟驿站、洗衣房和便利店都在步行三分钟内。",
+      focus: { x: 560, y: 240 }, zoom: 1.32,
       paths: [
-        "M 702 44 Q 790 20 900 20 Q 1010 20 1096 30 Q 1140 38 1142 118 L 1136 300 Q 1130 340 1052 344 L 906 348 Q 780 348 724 336 Q 698 320 700 240 L 700 120 Q 700 70 702 44 Z",
-        "M 396 108 Q 470 92 566 94 Q 660 96 692 116 Q 706 134 704 176 L 702 228 Q 696 262 654 268 L 560 272 Q 470 274 424 262 Q 396 248 394 200 Z",
-        "M 58 60 Q 150 44 258 46 Q 320 48 342 74 L 356 110 Q 362 140 344 168 L 326 196 Q 306 220 252 226 L 154 230 Q 84 232 62 208 Q 42 182 46 128 Z"
+        "M 690 60 Q 790 42 900 46 Q 942 54 944 112 L 934 188 Q 926 222 860 228 L 716 232 Q 690 212 688 158 Z",
+        "M 72 234 Q 140 224 212 230 L 234 264 Q 238 296 210 312 L 130 318 Q 78 314 66 284 Z"
       ],
       spots: [
-        { id: "dor-community", name: "学生宿舍区", note: "1–18 栋 · 四人间", x: 900, y: 190, placeId: "dormitory" },
-        { id: "dor-cainiao", name: "菜鸟驿站", note: "快递代收 · 3栋旁", x: 768, y: 286, accent: true },
-        { id: "dor-young", name: "青年教师公寓", note: "单身教工宿舍", x: 626, y: 190 },
-        { id: "dor-teacher", name: "教师公寓", note: "教职工生活区", x: 167, y: 130 },
-        { id: "dor-court1", name: "1号篮球场", note: "晚间开放", x: 470, y: 160 },
-        { id: "dor-court2", name: "2号羽毛球场", note: "需自带球拍", x: 612, y: 162 }
+        { id: "dor-community", name: "学生宿舍区", note: "1–18 栋 · 四人间", x: 800, y: 135, placeId: "dormitory" },
+        { id: "dor-cainiao", name: "菜鸟驿站", note: "快递代收 · 3栋旁", x: 712, y: 212, accent: true },
+        { id: "dor-young", name: "青年教师公寓", note: "单身教工宿舍", x: 150, y: 262 },
+        { id: "dor-teacher", name: "教师公寓", note: "教职工生活区", x: 100, y: 295 },
+        { id: "dor-court1", name: "1号篮球场", note: "晚间开放", x: 900, y: 200 },
+        { id: "dor-court2", name: "2号羽毛球场", note: "需自带球拍", x: 928, y: 158 }
       ]
     },
     {
       id: "sports", name: "运动健康区", en: "SPORTS & FITNESS", color: "#76A97C",
-      summary: "田径场、体育馆、游泳池与各类球场集中在东南角，夜间灯光覆盖到 22:00。",
-      focus: { x: 1010, y: 620 }, zoom: 1.75,
+      summary: "田径场、体育馆、游泳池与各类球场集中在东侧，夜间灯光覆盖到 22:00。",
+      focus: { x: 1040, y: 440 }, zoom: 1.7,
       paths: [
-        "M 856 404 Q 930 392 1010 398 Q 1082 404 1102 430 L 1132 520 Q 1150 580 1140 680 L 1120 752 Q 1106 790 1042 794 L 936 800 Q 866 796 850 756 L 838 690 Q 812 640 818 570 L 828 460 Z"
+        "M 850 230 Q 918 218 984 228 L 1000 300 Q 994 328 938 332 L 862 328 Q 840 300 844 262 Z",
+        "M 1006 352 Q 1082 342 1142 362 L 1184 400 Q 1202 460 1178 522 L 1128 598 Q 1088 628 1010 626 L 952 600 Q 932 554 938 498 L 946 412 Z"
       ],
       spots: [
-        { id: "spt-track", name: "田径场", note: "400 米跑道", x: 1087, y: 649, placeId: "stadium" },
-        { id: "spt-gym", name: "体育馆", note: "室内综合馆", x: 1008, y: 700 },
-        { id: "spt-pool", name: "游泳池", note: "夏季开放", x: 1102, y: 455 },
-        { id: "spt-basket5", name: "5号篮球场", note: "灯光球场", x: 1000, y: 600 },
-        { id: "spt-tennis1", name: "1号网球场", note: "需预约", x: 897, y: 755 },
-        { id: "spt-volley", name: "排球场", note: "沙地排球场", x: 979, y: 772 }
+        { id: "spt-track", name: "田径场", note: "400 米跑道", x: 1095, y: 420, placeId: "stadium" },
+        { id: "spt-gym", name: "体育馆", note: "室内综合馆", x: 915, y: 205 },
+        { id: "spt-pool", name: "游泳池", note: "夏季开放", x: 862, y: 258 },
+        { id: "spt-basket5", name: "5号篮球场", note: "灯光球场", x: 1024, y: 330 },
+        { id: "spt-tennis1", name: "1号网球场", note: "需预约", x: 890, y: 510 },
+        { id: "spt-volley", name: "排球场", note: "沙地排球场", x: 960, y: 545 }
       ]
     },
     {
       id: "lake", name: "湖景文化区", en: "LAKESIDE CULTURE", color: "#4FA79B",
       summary: "以映月湖为核心的休闲文化带，图书馆、九曲廊桥与亲水平台环湖展开。",
-      focus: { x: 600, y: 460 }, zoom: 1.55,
+      focus: { x: 450, y: 350 }, zoom: 1.6,
       paths: [
-        "M 348 292 Q 414 236 516 232 Q 592 228 624 276 Q 646 312 652 348 Q 660 384 706 400 Q 764 418 798 458 Q 832 500 810 552 Q 786 604 720 624 L 622 638 Q 528 642 458 608 L 372 552 Q 318 512 318 434 Z"
+        "M 620 240 Q 690 226 754 242 L 762 292 L 750 332 L 744 382 Q 748 402 730 426 Q 720 448 688 454 L 610 462 L 500 466 Q 430 462 366 450 L 262 450 Q 204 438 196 384 L 198 316 Q 206 268 262 256 Q 340 240 430 236 Z"
       ],
       spots: [
-        { id: "lak-library", name: "图书馆", note: "藏书与自习", x: 560, y: 330, placeId: "library" },
-        { id: "lak-water", name: "映月湖", note: "环湖栈道", x: 735, y: 505, placeId: "lake" },
-        { id: "lak-bridge", name: "九曲廊桥", note: "湖上步道", x: 420, y: 415 },
-        { id: "lak-pavilion", name: "湖心亭", note: "晨读集合点", x: 438, y: 340 },
-        { id: "lak-deck", name: "亲水平台", note: "观景平台", x: 830, y: 600 }
+        { id: "lak-library", name: "图书馆", note: "藏书与自习", x: 700, y: 265, placeId: "library" },
+        { id: "lak-water", name: "映月湖", note: "环湖栈道", x: 350, y: 355, placeId: "lake" },
+        { id: "lak-bridge", name: "九曲廊桥", note: "湖上步道", x: 400, y: 352 },
+        { id: "lak-pavilion", name: "湖心亭", note: "晨读集合点", x: 300, y: 312 },
+        { id: "lak-deck", name: "亲水平台", note: "观景平台", x: 715, y: 408 }
       ]
     },
     {
       id: "dining", name: "餐饮社交区", en: "DINING & SOCIAL", color: "#C69A52",
       summary: "滋兰餐厅、修远楼学生活动中心与超市医务室，构成日常吃喝与社交的一站式动线。",
-      focus: { x: 820, y: 260 }, zoom: 1.9,
+      focus: { x: 820, y: 320 }, zoom: 1.9,
       paths: [
-        "M 596 158 Q 640 142 706 146 Q 730 148 734 176 L 738 226 Q 734 256 700 262 L 634 266 Q 596 262 594 226 Z",
-        "M 740 148 Q 790 132 864 138 Q 916 144 918 178 L 920 234 Q 916 264 870 270 L 786 272 Q 746 268 742 232 Z",
-        "M 924 316 Q 980 302 1046 308 Q 1088 314 1090 344 L 1086 400 Q 1078 430 1030 434 L 960 436 Q 922 430 920 398 Z"
+        "M 754 292 Q 812 282 872 294 L 884 344 Q 880 386 826 396 L 766 396 Q 746 366 750 328 Z",
+        "M 928 292 Q 976 284 1014 294 L 1020 340 Q 1014 370 972 374 L 934 364 Q 918 330 926 308 Z",
+        "M 636 238 Q 672 230 706 238 L 710 264 Q 704 282 672 284 L 642 276 Q 630 256 636 246 Z"
       ],
       spots: [
-        { id: "din-canteen", name: "滋兰餐厅 · 一饭", note: "双楼层 · 06:30–21:00", x: 1015, y: 370, placeId: "cafeteria" },
-        { id: "din-hub", name: "修远楼 · 学生活动中心", note: "社团与演出", x: 820, y: 205, placeId: "student-center" },
-        { id: "din-market", name: "超市 · 医务室", note: "生活补给", x: 668, y: 205 }
+        { id: "din-canteen", name: "滋兰餐厅 · 一饭", note: "双楼层 · 06:30–21:00", x: 815, y: 340, placeId: "cafeteria" },
+        { id: "din-hub", name: "修远楼 · 学生活动中心", note: "社团与演出", x: 975, y: 335, placeId: "student-center" },
+        { id: "din-market", name: "超市 · 医务室", note: "生活补给", x: 672, y: 258 }
       ]
     }
   ],
@@ -114,7 +115,7 @@ window.NovaDB = {
   places: [
     {
       id: "library", name: "图书馆", shortName: "图书馆", en: "DGPT LIBRARY", category: "study", categoryLabel: "学习成长",
-      icon: "book-open", x: 42, y: 30, open: true, hours: "08:00–22:30", distance: "步行 6 分钟",
+      icon: "book-open", x: 55.9, y: 39.1, open: true, hours: "08:00–22:30", distance: "步行 6 分钟",
       description: "校园里最安静的知识星球。除了丰富的藏书，这里还有 24 小时自习区、研讨间和能看到湖景的窗边座位。",
       images: ["assets/library.jpg", "assets/reading-room.jpg"], imageLabels: ["图书馆中庭", "三楼自习区"],
       tips: [
@@ -126,7 +127,7 @@ window.NovaDB = {
     },
     {
       id: "cafeteria", name: "滋兰餐厅（一饭）", shortName: "滋兰餐厅", en: "ZHILAN CANTEEN", category: "life", categoryLabel: "校园生活",
-      icon: "utensils", x: 85, y: 46, open: true, hours: "06:30–21:00", distance: "步行 3 分钟",
+      icon: "utensils", x: 65.1, y: 50.2, open: true, hours: "06:30–21:00", distance: "步行 3 分钟",
       description: "两层空间汇聚南北风味，早餐的现磨豆浆和二楼川湘窗口最受欢迎，支持校园卡与移动支付。",
       images: ["assets/cafeteria.jpg", "assets/teaching.jpg"], imageLabels: ["一楼风味档口", "食堂东侧入口"],
       tips: [
@@ -142,7 +143,7 @@ window.NovaDB = {
     },
     {
       id: "stadium", name: "田径场", shortName: "田径场", en: "ATHLETIC FIELD", category: "sports", categoryLabel: "运动活力",
-      icon: "trophy", x: 89, y: 69, open: true, hours: "06:00–22:00", distance: "步行 8 分钟",
+      icon: "trophy", x: 87.5, y: 62, open: true, hours: "06:00–22:00", distance: "步行 8 分钟",
       description: "足球、夜跑、飞盘和草坪音乐会的共同据点。夜间灯光覆盖全场，新手也能快速找到同水平的运动搭子。",
       images: ["assets/stadium.jpg", "assets/lake.jpg"], imageLabels: ["傍晚的足球场", "操场东侧步道"],
       tips: [
@@ -154,7 +155,7 @@ window.NovaDB = {
     },
     {
       id: "student-center", name: "修远楼 · 学生活动中心", shortName: "修远楼", en: "XIUYUAN STUDENT HUB", category: "social", categoryLabel: "社交活动",
-      icon: "users", x: 70, y: 21, open: true, hours: "09:00–22:00", distance: "步行 5 分钟",
+      icon: "users", x: 77.9, y: 49.5, open: true, hours: "09:00–22:00", distance: "步行 5 分钟",
       description: "社团活动、桌游聚会和校园演出的发生地。一楼开放共享空间，二楼设有多功能活动室与排练厅。",
       images: ["assets/club-fair.jpg", "assets/reading-room.jpg"], imageLabels: ["社团开放日现场", "共享活动空间"],
       tips: [
@@ -165,7 +166,7 @@ window.NovaDB = {
     },
     {
       id: "teaching", name: "笃行楼 · 教二", shortName: "笃行楼", en: "DUXING HALL", category: "study", categoryLabel: "学习成长",
-      icon: "school", x: 68, y: 41, open: true, hours: "07:00–22:30", distance: "步行 2 分钟",
+      icon: "school", x: 47, y: 31.9, open: true, hours: "07:00–22:30", distance: "步行 2 分钟",
       description: "日常课程的主要阵地，智慧教室与开放式讨论区并存。没课的教室会在门口电子屏实时标记。",
       images: ["assets/teaching.jpg", "assets/reading-room.jpg"], imageLabels: ["笃行楼正门", "空闲教室自习区"],
       tips: [
@@ -176,7 +177,7 @@ window.NovaDB = {
     },
     {
       id: "dormitory", name: "学生宿舍区", shortName: "学生宿舍", en: "STUDENT RESIDENCE", category: "life", categoryLabel: "校园生活",
-      icon: "bed", x: 82, y: 14, open: true, hours: "全天开放", distance: "步行 10 分钟",
+      icon: "bed", x: 63.9, y: 19.9, open: true, hours: "全天开放", distance: "步行 10 分钟",
       description: "四人间上床下桌，楼下配有洗衣房、饮水机和共享厨房。每栋一层都有可交流、观影的公共客厅。",
       images: ["assets/dormitory.jpg", "assets/club-fair.jpg"], imageLabels: ["宿舍区中央庭院", "一层共享客厅"],
       tips: [
@@ -187,7 +188,7 @@ window.NovaDB = {
     },
     {
       id: "lake", name: "映月湖", shortName: "映月湖", en: "YINGYUE LAKE", category: "social", categoryLabel: "社交活动",
-      icon: "waves", x: 48, y: 54, open: true, hours: "全天开放", distance: "步行 12 分钟",
+      icon: "waves", x: 28, y: 52.4, open: true, hours: "全天开放", distance: "步行 12 分钟",
       description: "沿湖木栈道全长约 900 米，是晨读、散步和看日落的好去处。湖心亭常举办小规模音乐与朗诵活动。",
       images: ["assets/lake.jpg", "assets/stadium.jpg"], imageLabels: ["映月湖木栈道", "湖畔夕阳"],
       tips: [
@@ -198,7 +199,7 @@ window.NovaDB = {
     },
     {
       id: "east-gate", name: "东门", shortName: "东门", en: "EAST GATE", category: "life", categoryLabel: "校园生活",
-      icon: "store", x: 94, y: 40, open: true, hours: "07:00–23:00", distance: "步行 4 分钟",
+      icon: "store", x: 93.5, y: 70.9, open: true, hours: "07:00–23:00", distance: "步行 4 分钟",
       description: "连接校园与城市生活的入口，文具、打印、水果和日常餐饮一应俱全，新生采购生活用品很方便。",
       images: ["assets/teaching.jpg", "assets/cafeteria.jpg"], imageLabels: ["东门入口", "生活街区餐饮店"],
       tips: [
@@ -967,12 +968,15 @@ window.NovaDB = {
   ],
 
   clubEvents: [
-    { id: "event-1", clubId: "club-57", kind: "比赛", title: "新生杯八人制足球友谊赛", date: "11月09日", weekday: "周日", time: "15:00", place: "田径场北侧球门", signup: "已报名 8 支队伍", image: "assets/stadium.jpg", desc: "按水平混合分队，每位报名的同学都有上场时间，赛后一起看比赛录像复盘。" },
-    { id: "event-2", clubId: "club-16", kind: "比赛", title: "机器人循迹挑战赛", date: "11月12日", weekday: "周三", time: "19:00", place: "笃行楼 302 实训室", signup: "限 20 支队伍", image: "assets/teaching.jpg", desc: "两人一组现场搭建循迹小车，赛道当场公布，零基础也能参加赛前三十分钟的教学环节。" },
-    { id: "event-3", clubId: "club-47", kind: "比赛", title: "新生辩论公开赛", date: "11月15日", weekday: "周六", time: "19:30", place: "修远楼报告厅", signup: "观众席开放", image: "assets/reading-room.jpg", desc: "围绕“大学应该更重视通识还是专业”展开，赛后设有自由发言与辩手交流环节。" },
-    { id: "event-4", clubId: "club-72", kind: "活动", title: "秋日校园主题外拍", date: "11月08日", weekday: "周六", time: "16:00", place: "映月湖湖心亭", signup: "手机也可参加", image: "assets/lake.jpg", desc: "沿湖完成三组主题拍摄任务，现场有学长讲解构图与光线，活动后一起做一次快速后期。" },
-    { id: "event-5", clubId: "club-52", kind: "活动", title: "草坪音乐会 · 冬日序章", date: "11月20日", weekday: "周五", time: "19:00", place: "映月湖草坪", signup: "开放 5 个新生名额", image: "assets/club-fair.jpg", desc: "民谣、乐队与指弹轮番上场，也可以只带耳朵来听，散场前一起合唱一首歌。" },
-    { id: "event-6", clubId: "club-61", kind: "活动", title: "醒狮体验开放日", date: "11月16日", weekday: "周日", time: "14:00", place: "田径场东侧", signup: "现场可直接加入", image: "assets/stadium.jpg", desc: "从基本步法到一次完整采青，狮头与锣鼓都可上手体验，社团队员全程带练。" }
+    { id: "event-1", clubId: "club-52", kind: "回顾", title: "第十六届校园十大歌手大赛初赛", date: "10月25日", weekday: "周六", time: "19:00", place: "修远楼报告厅", signup: "阅读 718 · 6 赞", image: "assets/activities/singer-live.webp", desc: "青春“歌”会，以歌启程，声遇初心。初赛现场四十余位选手登台，决赛名单已通过校团委公众号公布。" },
+    { id: "event-2", clubId: "club-57", kind: "赛况", title: "第二届“东超杯”足球赛运动防护保障纪实", date: "11月02日", weekday: "周日", time: "16:30", place: "田径场", signup: "8 支队伍参赛", image: "assets/stadium.jpg", desc: "赛事医疗与运动防护由卫生健康学院志愿队全程驻场，从赛前贴扎到赛后拉伸，把专业带到球场边。" },
+    { id: "event-3", clubId: "club-49", kind: "招新", title: "2026 社团招新 · 松山湖主会场", date: "10月21–22日", weekday: "周三/周四", time: "11:30–13:30 / 17:30–19:00", place: "修远楼校道 · 一栋宿舍门口校道", signup: "56 个社团 · 2000+ 人次", image: "assets/activities/recruit-1.webp", cta: { label: "浏览 89 个社团", href: "#clubs" }, desc: "思想政治、学术科技、创新创业、文化体育、志愿公益、自律互助六大板块 56 个社团出摊，道滘校区 19 个社团同步在卫生健康学院篮球场开展。" },
+    { id: "event-4", clubId: "club-53", kind: "体验", title: "一盏秋茶 · 茶艺体验开放日", date: "11月14日", weekday: "周六", time: "15:00", place: "学生活动中心 204", signup: "限 30 人", image: "assets/activities/tea.webp", desc: "从温杯、投茶到出汤，社团成员带你完整走一遍工夫茶流程，现场提供茶点与茶样。" },
+    { id: "event-5", clubId: "club-30", kind: "实训", title: "航拍校园 · 无人机实操课", date: "11月18日", weekday: "周三", time: "16:00", place: "田径场东侧草坪", signup: "限 12 人", image: "assets/activities/drone.jpg", desc: "起飞前检查、航线规划与基础运镜各讲一遍，每位同学都有一次实际操控与航拍的机会。" },
+    { id: "event-6", clubId: "club-61", kind: "回顾", title: "醒狮夜场 · 社团文化节现场", date: "4月16日", weekday: "周四", time: "19:30", place: "道滘校区中心广场", signup: "现场 3000+ 观众", image: "assets/activities/lion.webp", desc: "八十余个社团参与的文化节上，醒狮社的夜场采青与喷火表演成为当晚人气最高的节目。" },
+    { id: "event-7", clubId: "club-39", kind: "讲座", title: "元启・AI Talk Workshop", date: "11月04日", weekday: "周三", time: "15:00–17:00", place: "教二 303", signup: "技能特长 · 已结束", image: "assets/activities/ai-talk.jpg", desc: "元启AI社在到梦空间发布的技能特长类活动，围绕 AI 工具的实际用法展开，两小时工作坊形式。" },
+    { id: "event-8", clubId: "club-30", kind: "放映", title: "“魅力电影，精彩故事”主题电影放映", date: "06月17日", weekday: "周三", time: "14:30–17:00", place: "崇德楼（教一）107", signup: "思想成长 · 已结束", image: "assets/activities/movie-night.jpg", desc: "东职院无人机协会在到梦空间发起的放映活动，同步开放工作人员岗位报名，负责签到与场地维护。" },
+    { id: "event-9", clubId: "club-16", kind: "系列", title: "工业软件赋能未来工程师 · 校园系列活动", date: "06月18日", weekday: "周四", time: "08:00–12:00", place: "8B206", signup: "智能制造学院团学组织", image: "assets/activities/industry-software.jpg", desc: "智能制造学院团学组织连开多场，6月18日至22日覆盖 8B206 与培训楼一楼，内容围绕工业软件实操。" }
   ]
 };
 
