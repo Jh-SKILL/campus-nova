@@ -16,7 +16,9 @@ export const PALETTE = {
   track: "#DCA593",
   field: "#CBE3AE",
   accentRoof: "#E79070",
-  outline: "#181B21"
+  outline: "#181B21",
+  window: "#C7C2B6",
+  shadow: "#7FA85C"
 };
 
 /* 四阶灰度渐变图：卡通材质的明暗分层全靠它 */

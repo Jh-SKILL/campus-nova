@@ -26,12 +26,8 @@ export function mountCampusMap(container, { data } = {}) {
     labels?.setFilter(filter);
   }
 
-  /* 远景只保留体块，近景再点亮细节层；状态不变时跳过整棵树遍历 */
-  let detailsShown = null;
+  /* 缩放联动：细节层按阈值显隐，描边厚度随缩放保持屏幕像素恒定 */
   stage.onZoomChange = zoom => {
-    const shown = zoom > 0.9;
-    if (shown === detailsShown) return;
-    detailsShown = shown;
     world?.setZoom(zoom);
   };
 

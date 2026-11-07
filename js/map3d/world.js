@@ -17,6 +17,39 @@ export function buildWorld(stage, data) {
   stage.world.add(group);
   stage.requestRender();
 
+  /* 细节层与描边预先收集，避免每次缩放都整棵树遍历 */
+  const detailGroups = [];
+  const outlines = [];
+  group.traverse(object => {
+    if (object.userData.details) detailGroups.push(object.userData.details);
+    if (object.userData.outlineMax) outlines.push(object);
+  });
+  let detailsVisible = true;
+
+  /*
+   * 描边保持屏幕空间恒定：相机缩放后重新计算世界厚度，
+   * 远景不会退化成灰边，近景也不会变成粗黑框。
+   */
+  const OUTLINE_PX = 4.8;
+  function updateOutlines(zoom) {
+    const height = stage.renderer.domElement.clientHeight || 1;
+    const viewHeight = stage.camera.top - stage.camera.bottom;
+    const worldPerPixel = viewHeight / zoom / height;
+    const thickness = THREE.MathUtils.clamp(worldPerPixel * OUTLINE_PX, 0.08, 1.4);
+    outlines.forEach(outline => {
+      outline.scale.setScalar(1 + thickness / outline.userData.outlineMax);
+    });
+  }
+
+  /* 缩放小于 0.9 时收起细节层，远景只留体块 */
+  function setZoom(zoom) {
+    updateOutlines(zoom);
+    const visible = zoom > 0.9;
+    if (visible === detailsVisible) return;
+    detailsVisible = visible;
+    detailGroups.forEach(details => { details.visible = visible; });
+  }
+
   /*
    * 筛选：被排除的建筑淡到 18% 透明度，而不是直接消失，
    * 这样板块/分类切换时能看出「同一张地图被筛掉了一部分」。
@@ -28,7 +61,7 @@ export function buildWorld(stage, data) {
 
   function applyValue(state) {
     state.record.materials.forEach(material => {
-      material.opacity = state.value;
+      material.opacity = (material.userData.baseOpacity ?? 1) * state.value;
     });
   }
 
@@ -63,13 +96,7 @@ export function buildWorld(stage, data) {
 
   return {
     group,
-    /* 缩放小于 0.9 时收起细节层，远景只留体块 */
-    setZoom(zoom) {
-      const visible = zoom > 0.9;
-      group.traverse(object => {
-        if (object.userData.details) object.userData.details.visible = visible;
-      });
-    },
+    setZoom,
     setFilter
   };
 }
@@ -95,8 +122,10 @@ function isolate(object) {
 /*
  * 卡通描边：反向法线壳（BackSide）+ 轻微放大，只画轮廓不画面片，
  * 比 EdgesGeometry 干净，圆角体块也不会出现碎线。
+ * 初始厚度由 setZoom 按当前缩放统一刷新。
  */
-const OUTLINE_THICKNESS = 0.42;
+const OUTLINE_SEED = 0.4;
+const SHADOW_GEO = new THREE.CircleGeometry(0.5, 26);
 
 function addOutline(object, materials) {
   const meshes = [];
@@ -126,10 +155,36 @@ function addOutline(object, materials) {
     if (!worldMax) return;
 
     const outline = new THREE.Mesh(mesh.geometry, material);
-    outline.scale.setScalar(1 + OUTLINE_THICKNESS / worldMax);
+    outline.scale.setScalar(1 + OUTLINE_SEED / worldMax);
+    outline.userData.outlineMax = worldMax;
     outline.renderOrder = -1;
     mesh.add(outline);
   });
+}
+
+/*
+ * 接触阴影：两层同心扁椭圆叠出柔和边缘，
+ * 让体块「落」在草地上，而不是悬浮在色块上。
+ */
+function addContactShadow(object, spot, materials) {
+  const [width, depth] = spot.size || [1.6, 1.6];
+
+  const group = new THREE.Group();
+  group.position.y = 0.115;
+  [
+    { scale: 1.34, opacity: 0.07 },
+    { scale: 1.16, opacity: 0.09 }
+  ].forEach(({ scale, opacity }) => {
+    const material = flat(PALETTE.shadow, { transparent: true, opacity, depthWrite: false }).clone();
+    material.userData.baseOpacity = opacity;
+    materials.add(material);
+    const mesh = new THREE.Mesh(SHADOW_GEO, material);
+    mesh.rotation.x = -Math.PI / 2;
+    mesh.scale.set(width * scale, depth * scale, 1);
+    group.add(mesh);
+  });
+
+  object.add(group);
 }
 
 /* 水域：映月湖两片湖面 */
@@ -199,6 +254,7 @@ function buildBuildings(parent, data) {
 
       const materials = isolate(object);
       addOutline(object, materials);
+      if (spot.kind === "block" || spot.kind === "pavilion") addContactShadow(object, spot, materials);
       object.userData.category = placeCategory.get(spot.placeId) || null;
       records.push({ zoneId: zone.id, category: object.userData.category, materials });
       buildings.add(object);
@@ -237,6 +293,7 @@ function block(spot, zone) {
   base.position.y = 0.06;
 
   details.add(roofDetail(spot, zone, width, depth, height), wallDetail(spot, zone, width, depth, height));
+  if (height >= 3) details.add(windowBands(width, depth, height));
 
   group.add(body, base, details);
   group.userData.details = details;
@@ -321,6 +378,21 @@ function wallDetail(spot, zone, width, depth, height) {
     sign.position.set(0, height + 0.42, depth / 2 * 0.62);
     group.add(sign);
   }
+
+  return group;
+}
+
+/* 窗带：受光立面两条横向长窗，避免楼体看起来像纯色积木 */
+function windowBands(width, depth, height) {
+  const group = new THREE.Group();
+  const material = flat(PALETTE.window);
+
+  [0.36, 0.62].forEach(ratio => {
+    const strip = new THREE.Mesh(UNIT_BOX, material);
+    strip.scale.set(width * 0.74, 0.24, 0.08);
+    strip.position.set(0, height * ratio, depth / 2 + 0.03);
+    group.add(strip);
+  });
 
   return group;
 }

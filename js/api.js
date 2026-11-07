@@ -80,7 +80,9 @@
         places: window.NovaDB.places,
         groups: window.NovaStore.getGroups(),
         zones: window.NovaDB.zones,
-        categories: window.NovaDB.categories
+        categories: window.NovaDB.categories,
+        buildings: window.NovaDB.buildings || [],
+        pois: window.NovaDB.campusPois || []
       }), "/map");
     },
 
